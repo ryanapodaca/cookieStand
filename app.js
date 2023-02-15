@@ -15,7 +15,7 @@ function Store(name, minCust, maxCust, aveCookies) {
   this.aveCookies = aveCookies;
   this.cookiesPerHr = [];
   this.total = 0;
-  this.custPerHr();
+  //this.custPerHr();
   this.calcCookiesPerHr();
 }
 
