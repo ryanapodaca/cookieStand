@@ -4,14 +4,47 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <style>
+   html {
+  font-family: sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(200,200,200);
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+
+td, th {
+  border: 1px solid rgb(190,190,190);
+  padding: 10px 20px;
+}
+
+th {
+  background-color: rgb(235,235,235);
+}
+
+td {
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: rgb(250,250,250);
+}
+
+tr:nth-child(odd) td {
+  background-color: rgb(245,245,245);
+}
+
+caption {
+  padding: 10px;
+}
+    </style>
+  <title>Salmon Cookies</title>
 </head>
 <body>
-  <ul id="seattleData"></ul>
-  <ul id="tokyoData"></ul>
-  <ul id="dubaiData"></ul>
-  <ul id="parisData"></ul>
-  <ul id="limaData"></ul>
+  <section id='cookie-store-info'></section>
 </body>
 <script src="app.js"></script>
 </html>
