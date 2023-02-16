@@ -1,60 +1,15 @@
 'use strict';
 
-//Header
-let cookieStoreInfo = document.getElementById('cookie-store-info');
-
-let table = document.createElement('table');
-cookieStoreInfo.appendChild(table);
-
-// let head = document.createElement('thead');
-// table.appendChild(head);
-
-let trEle = document.createElement('tr');
-table.appendChild(trEle);
-
-let thEle = document.createElement('th');
-thEle.textContent = 'Locations';
-trEle.appendChild(thEle);
-
-for (let i = 0; i < times.length; i++) {
-  let thEle = document.createElement('th');
-  thEle.textContent = times[i];
-  trEle.appendChild(thEle);
-}
-
-let thEle2 = document.createElement('th');
-thEle2.textContent = 'Daily Location Total';
-trEle.appendChild(thEle2);
-
-
-//Footer
-
-let footer = document.createElement('tfoot');
-table.appendChild(footer);
-
-let trEle3 = document.createElement('tr');
-footer.appendChild(trEle3);
-
-let numsArr = [seattle.cookiesPerHr,tokyo.cookiesPerHr,dubai.cookiesPerHr,paris.cookiesPerHr,lima.cookiesPerHr];
-
-for (let i = 0; i < numsArr.length; i){
-  let sum = 0;
-  for (let j = 0; j < numsArr.length; j++) {
-    sum += numsArr[j];
-  }
-}
-
-for (let i = 0; i < numsArr.length; i++) {
-  let tdEle = document.createElement('td');
-  tdEle.textContent = numsArr[i];
-  trEle3.appendChild(tdEle);
-}
-
 //Globals
 
 let cookieStores = [];
 
 const times = ['6 am','7 am','8 am','9 am','10 am', '11 am', '12 pm','1 pm', '2 pm', '3 pm','4 pm','5 pm', '6 pm','7 pm'];
+
+let cookieStoreInfo = document.getElementById('cookie-store-info');
+
+let table = document.createElement('table');
+cookieStoreInfo.appendChild(table);
 
 //Constructor Function
 function Store(name, minCust, maxCust, aveCookies) {
@@ -69,6 +24,7 @@ function Store(name, minCust, maxCust, aveCookies) {
 }
 
 //Prototype Methods
+
 Store.prototype.custPerHr = function(min,max){
   // min = Math.ceil(min);
   // max = Math.floor(max);
@@ -84,6 +40,7 @@ Store.prototype.calcCookiesPerHr = function() {
   }
   this.cookiesPerHr.push(this.total);
 };
+
 
 Store.prototype.render = function (){
 
@@ -107,7 +64,6 @@ Store.prototype.render = function (){
 
 };
 
-
 //Objects Created
 let seattle = new Store('Seattle', 23, 65, 6.3);
 let tokyo = new Store('Tokyo', 3, 24, 1.2);
@@ -115,16 +71,80 @@ let dubai = new Store('Dubai', 11, 38, 3.7);
 let paris = new Store('Paris', 20, 38, 2.3);
 let lima = new Store('Lima', 2, 16, 4.6);
 
+//Header
+let renderHeader = function(){
+
+  let trEle = document.createElement('tr');
+  table.appendChild(trEle);
+
+  let thEle = document.createElement('th');
+  thEle.textContent = 'Locations';
+  trEle.appendChild(thEle);
+
+  for (let i = 0; i < times.length; i++) {
+    let thEle = document.createElement('th');
+    thEle.textContent = times[i];
+    trEle.appendChild(thEle);
+  }
+  let thEle2 = document.createElement('th');
+  thEle2.textContent = 'Daily Location Total';
+  trEle.appendChild(thEle2);
+};
+
+renderHeader();
+
+
+//Footer
+
+let renderFooter = function() {
+  let footer = document.createElement('tfoot');
+  table.appendChild(footer);
+
+  let trEle3 = document.createElement('tr');
+  footer.appendChild(trEle3);
+
+  let thEle = document.createElement('th');
+  thEle.textContent = 'Totals';
+  trEle3.appendChild(thEle);
+
+
+  let numsArr = [seattle.cookiesPerHr,tokyo.cookiesPerHr,dubai.cookiesPerHr,paris.cookiesPerHr,lima.cookiesPerHr];
+
+  let storeHourlyTotals =[];
+
+  for (let i = 0; i < times.length; i++){
+    let sumTotals = 0;
+    for (let j = 0; j < numsArr.length; j++) {
+      sumTotals += numsArr[j][i];
+      storeHourlyTotals.push(sumTotals);
+    }
+  }
+
+  for (let i = 0; i < times.length; i++) {
+    let tdEle = document.createElement('td');
+    tdEle.textContent = storeHourlyTotals[i];
+    trEle3.appendChild(tdEle);
+  }
+
+  let grandTotal = 0;
+  for (let i = 0; i < cookieStores.length; i++) {
+    grandTotal += cookieStores[i].total;
+  }
+  let td = document.createElement('td');
+  td.textContent = grandTotal;
+  trEle3.appendChild(td);
+
+};
+renderFooter();
+//Grand total
+
+let renderGrandTotal = function() {
+  
+};
+
+renderGrandTotal();
+
 //code
-
-
-// footerTotals = function() {
-//   let footerTotal = document.createElement('th');
-//   footerTotal.textContent = 'Total';
-//   row5.appendChild(footerTotal);
-// };
-
-// footerTotals();
 
 cookieStores.push(seattle,tokyo,paris,dubai,lima);
 
@@ -136,7 +156,6 @@ function renderAllStores() {
 }
 
 renderAllStores();
-
 
 
 // //objects
