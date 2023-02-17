@@ -1,0 +1,35 @@
+body {
+  background-color: aqua;
+}
+
+header {
+  background-color: black;
+  display: inline-flex;
+}
+
+p{
+  color: white;
+  background-color: black;
+}
+.locations {
+  background-color: rgba(173, 154, 9, 0.134);
+  border-color:cadetblue;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  display:flex;
+
+}
+
+nav {
+  background-color: black;
+}
+
+a {
+  color: white;
+  text-decoration:antiquewhite;
+}
+h1{
+  color: white;
+
+}
