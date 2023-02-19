@@ -37,9 +37,6 @@ let renderHeader = function(){
 renderHeader();
 
 
-
-
-
 //Constructor Function
 function Store(name, minCust, maxCust, aveCookies) {
   this.name = name;
@@ -61,12 +58,13 @@ storeForm.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
   let name = event.target.location.value;
-  let minCust = parseInt(event.target.minCust.value);
-  let maxCust = parseInt(event.target.maxCust.value);
-  let aveCookies = parseFloat(event.target.aveCookies.value);
+  let minCust = +event.target.minCust.value;
+  let maxCust = +event.target.maxCust.value;
+  let aveCookies = +event.target.aveCookies.value;
   let newStore = new Store(name, minCust, maxCust, aveCookies);
   cookieStores.push(newStore);
   // let tfoot = document.querySelector('tfoot');
+  // let tfoot = document.querySelector('tfoot').remove();
   // tfoot.innerHTML = '';
   document.getElementById('cookie-store-table').deleteTFoot();
   newStore.render();
@@ -108,10 +106,6 @@ Store.prototype.render = function (){
 
   }
 
-  // let tdTotalElem = document.createElement('td');
-  // tdNameElem.textContent = this.total;
-  // row.appendChild(tdTotalElem);
-
 };
 
 //Objects Created
@@ -136,52 +130,22 @@ let renderFooter = function() {
   thEle.textContent = 'Totals';
   trEle3.appendChild(thEle);
 
-
-  // let numsArr = [seattle.cookiesPerHr,tokyo.cookiesPerHr,dubai.cookiesPerHr,paris.cookiesPerHr,lima.cookiesPerHr];
-
-  let storeHourlyTotals =0;
+  let grandTotal =0;
 
   for(let i = 0; i < times.length; i++){
-    let sumTotals = 0;
+    let hourlyTotals = 0;
     for (let j = 0; j < cookieStores.length; j++) {
-      sumTotals += cookieStores[j].cookiesPerHr[i];
-      storeHourlyTotals += cookieStores[j].cookiesPerHr[i];
+      hourlyTotals += cookieStores[j].cookiesPerHr[i];
+      grandTotal += cookieStores[j].cookiesPerHr[i];
     }
     let th = document.createElement('th');
-    th.textContent = sumTotals;
+    th.textContent = hourlyTotals;
     trEle3.appendChild(th);
   }
   let th = document.createElement('th');
-  th.textContent = storeHourlyTotals;
+  th.textContent = grandTotal;
   trEle3.appendChild(th);
-
-
-  // for (let i = 0; i < times.length; i++) {
-  //   let tdEle = document.createElement('td');
-  //   tdEle.textContent = storeHourlyTotals[i];
-  //   trEle3.appendChild(tdEle);
-  // }
-
-  // let grandTotal = 0;
-  // for (let i = 0; i < cookieStores.length; i++) {
-  //   grandTotal += cookieStores[i].total;
-  // }
-
-  // let td = document.createElement('td');
-  // td.textContent = grandTotal;
-  // trEle3.appendChild(td);
-
 };
-
-
-// //Grand total
-
-// let renderGrandTotal = function() {
-// };
-// renderGrandTotal();
-//code
-
-
 
 function renderAllStores() {
   for (let i = 0; i < cookieStores.length; i++) {
@@ -192,7 +156,6 @@ function renderAllStores() {
 
 renderAllStores();
 renderFooter();
-
 
 // //objects
 // let seattle = {

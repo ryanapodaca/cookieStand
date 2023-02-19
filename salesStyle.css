@@ -2,13 +2,16 @@ body {
   background-color: darkcyan;
   font: courier bold;
 }
+
 nav {
   margin: 50 px;
 }
+
 form {
   background-color: rgba(114, 201, 139, 0.554);
   margin-top: 50px;
 }
+
 html {
   font-family: sans-serif;
   font-size: 14px;
@@ -51,3 +54,4 @@ tr:nth-child(odd) td {
 caption {
   padding: 10px;
 }
+
