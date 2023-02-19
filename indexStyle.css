@@ -8,6 +8,10 @@ header {
 }
 
 p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 26px;
+  color: darkmagenta;
+}
   color: white;
   background-color: black;
 }
@@ -21,6 +25,23 @@ p{
 
 }
 
+#merch{
+  width:650px;
+  background-color: black;
+  border-radius: 6px;
+  border-style: solid;
+
+}
+
+#merch-text{
+  color: white;
+  display: flex;
+  justify-content: center;
+
+}
+#fish{
+  float: right;
+}
 nav {
   background-color: black;
 }
